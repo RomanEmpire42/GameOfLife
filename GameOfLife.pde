@@ -5,6 +5,7 @@ public final static int NUM_ROWS = 20;
 private Life[][] buttons; //2d array of Life buttons each representing one cell
 private boolean[][] buffer; //2d array of booleans to store state of buttons array
 private boolean running = true; //used to start and stop program
+private boolean nextFrame = true; //used to start the program for one frame
 public boolean mineswept = false;
 public void setup () {
   size(400, 400);
@@ -29,17 +30,21 @@ public void setup () {
 
 public void draw () {
   background(200);
-  if (running == false) //pause the program
+  if (!running && !nextFrame) //pause the program
     return;
-  if (!mineswept) {
+  if (!mineswept && (nextFrame || running)) {
+    nextFrame = false;
     copyFromButtonsToBuffer();
     copyFromBufferToButtons();
   }
 }
 
 public void keyPressed() {
-  if (keyCode == 32) {
+  if (keyCode == 20) {
     running = !running;
+  }
+  if (keyCode == 32) {
+    nextFrame = true;
   }
   if (key == 'r') {
     for (int r = 0; r < NUM_ROWS; r++) { 
