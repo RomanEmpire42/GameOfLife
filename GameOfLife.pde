@@ -40,10 +40,10 @@ public void draw () {
 }
 
 public void keyPressed() {
-  if (keyCode == 20) {
+  if (keyCode == 32) {
     running = !running;
   }
-  if (keyCode == 32) {
+  if (keyCode == 16) {
     nextFrame = true;
   }
   if (key == 'r') {
